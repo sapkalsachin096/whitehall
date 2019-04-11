@@ -76,6 +76,8 @@ class StatisticsAnnouncement < ApplicationRecord
               link: :public_path,
               description: :summary,
               display_type: :display_type,
+              content_store_document_type: :content_store_document_type,
+              public_timestamp: :updated_at,
               slug: :slug,
               organisations: :organisations_slugs,
               policy_areas: :topic_slugs,
@@ -139,6 +141,10 @@ class StatisticsAnnouncement < ApplicationRecord
 
   def publication_type
     PublicationType.find_by_id(publication_type_id)
+  end
+
+  def content_store_document_type
+    PublishingApiPresenters.presenter_for(self).document_type
   end
 
   def public_path

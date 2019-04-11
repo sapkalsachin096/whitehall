@@ -33,11 +33,11 @@ module PublishingApi
       LinksPresenter.new(item).extract(%i[organisations policy_areas])
     end
 
-  private
-
     def document_type
       item.national_statistic? ? "national_statistics_announcement" : "official_statistics_announcement"
     end
+
+  private
 
     def details
       {
