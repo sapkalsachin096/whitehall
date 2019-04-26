@@ -5,16 +5,20 @@ module Govspeak
         %w[id content_id type current_eq_govspeak_6 govspeak_6_valid current_eq_govspeak_5 govspeak_5_valid]
       end
 
+      def self.base_path
+        "/tmp/compare/"
+      end
+
       def self.govspeak_6_path
-        "tmp/govspeak-6-#{type}.csv"
+        base_path + "govspeak-6-#{type}.csv"
       end
 
       def self.govspeak_5_6_path
-        "tmp/govspeak-#{type}.csv"
+        base_path + "govspeak-#{type}.csv"
       end
 
       def self.run
-        FileUtils.mkdir_p("tmp/compare/#{Govspeak::VERSION}")
+        FileUtils.mkdir_p(base_path + Govspeak::VERSION)
 
         if Govspeak::VERSION == '6.0.0'
           CSV.open(govspeak_6_path, 'wb') do |csv|
