@@ -85,7 +85,8 @@ module Govspeak
         html.gsub!(' rel="external"', '')
         html.gsub!('http://www.dev.gov.uk', 'https://www.gov.uk')
         html.gsub!('http://static.dev.gov.uk', 'https://assets.publishing.service.gov.uk')
-        html.gsub!('integration.publishing.service.gov.uk', 'publishing.service.gov.uk')
+        html.gsub!('https://www.integration.publishing.service.gov.uk', 'https://www.gov.uk')
+        html.gsub!('https://assets.integration.publishing.service.gov.uk', 'https://assets.publishing.service.gov.uk')
 
         html.gsub!('href="/government/uploads', 'href="https://assets.publishing.service.gov.uk/government/uploads')
 
