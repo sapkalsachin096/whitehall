@@ -26,13 +26,15 @@ module Govspeak
 
       def rendered_govspeak
         @rendered_govspeak ||= Whitehall::GovspeakRenderer.new.govspeak_edition_to_html(model)
+      rescue StandardError => e
+        e.message
       end
 
       def current_html
         @current_html ||= Services.publishing_api.
         get_content(model.content_id).parsed_content['details']['body']
-      rescue GdsApi::HTTPNotFound
-        nil
+      rescue StandardError => e
+        e.message
       end
     end
   end

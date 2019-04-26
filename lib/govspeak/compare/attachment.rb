@@ -30,6 +30,8 @@ module Govspeak
 
       def rendered_govspeak
         @rendered_govspeak ||= model.send(:generate_govspeak).to_s
+      rescue StandardError => e
+        e.message
       end
 
       def current_html

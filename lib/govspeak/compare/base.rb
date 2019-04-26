@@ -68,7 +68,7 @@ module Govspeak
 
       def write_diff
         if current_html.present? && !equal? && diff.present?
-          File.write("tmp/compare/#{Govspeak::VERSION}/#{model.class.to_s.underscore}-#{model.id}.diff", diff)
+          File.write(self.class.base_path + Govspeak::VERSION + "/#{model.class.to_s.underscore}-#{model.id}.diff", diff)
         end
       end
 
@@ -81,6 +81,7 @@ module Govspeak
         html.gsub!(' rel="external"', '')
         html.gsub!('http://www.dev.gov.uk', 'https://www.gov.uk')
         html.gsub!('http://static.dev.gov.uk', 'https://assets.publishing.service.gov.uk')
+        html.gsub!('integration.publishing.service.gov.uk', 'publishing.service.gov.uk')
 
         html.gsub!('href="/government/uploads', 'href="https://assets.publishing.service.gov.uk/government/uploads')
 
