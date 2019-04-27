@@ -1,5 +1,5 @@
 desc "Compare Govspeak"
-task compare_govspeak: :environment  do
+task compare_govspeak: :environment do
   require 'govspeak/compare/attachment'
   require 'govspeak/compare/edition'
 
