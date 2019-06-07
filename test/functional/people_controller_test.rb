@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'govuk_schemas'
 require "gds_api/test_helpers/search"
 
 class PeopleControllerTest < ActionController::TestCase
@@ -18,9 +19,17 @@ class PeopleControllerTest < ActionController::TestCase
     stub_record(:role_appointment, role_appointment_attributes)
   end
 
+  def stub_person_in_content_store
+    example = GovukSchemas::RandomExample.new(schema: 'person').payload do |payload|
+      payload.merge(title: @person.title)
+    end
+    content_store_has_item(example["base_path"], example)
+  end
+
   setup do
     @person = create(:person)
     stub_search_has_no_policies_for_any_type
+    stub_person_in_content_store
   end
 
   view_test "#show displays the details of the person and their roles" do
@@ -65,7 +74,7 @@ class PeopleControllerTest < ActionController::TestCase
 
     get :show, params: { id: person }, format: :atom
 
-    assert_redirected_to '/government/announcements.atom?people[]=a-person'
+    assert_redirected_to '/search/news-and-communications.atom?people[]=a-person'
   end
 
   view_test "should display the person's policies with content" do

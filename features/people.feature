@@ -10,6 +10,7 @@ Scenario: Viewing the person page for a person
   Given a person called "Benjamin Disraeli"
   When I visit the person page for "Benjamin Disraeli"
   Then I should see information about the person "Benjamin Disraeli"
+  And schema.org information about "Benjamin Disraeli"
 
 Scenario: Announcements by that person are shown
   Given I am an editor

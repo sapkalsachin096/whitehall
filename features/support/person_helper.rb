@@ -1,6 +1,14 @@
 module PersonHelper
   def create_person(name, attributes = {})
     create(:person, split_person_name(name).merge(attributes))
+    stub_person_in_content_store(name)
+  end
+
+  def stub_person_in_content_store(name)
+    example = GovukSchemas::RandomExample.new(schema: schema).payload do |payload|
+      payload.merge(title: name)
+    end
+    content_store_has_item(example["base_path"], example)
   end
 
   def find_person(name)

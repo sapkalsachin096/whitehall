@@ -125,3 +125,7 @@
     </div>
   </div>
 <% end %>
+
+<%= render 'govuk_publishing_components/components/machine_readable_metadata',
+           schema: :person,
+           content_item: @content_item %>

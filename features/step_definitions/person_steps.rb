@@ -86,6 +86,14 @@ Then(/^I should see information about the person "([^"]*)"$/) do |name|
   assert page.has_css?(".biography", text: person.biography)
 end
 
+And(/^schema.org information about the person$/) do
+  schema_sections = page.find_all("script[type='application/ld+json']", visible: false)
+    schemas = schema_sections.map { |section| JSON.parse(section.text(:all)) }
+
+    org_schema = schemas.detect { |schema| schema["@type"] == "Person" }
+    assert_equal org_schema["name"], "Benjamin Disraeli"
+end
+
 Then(/^I should see the worldwide organisation listed on his public page$/) do
   person = Person.last
   organisation = WorldwideOrganisation.last

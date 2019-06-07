@@ -112,6 +112,7 @@ group :test do
   gem 'ci_reporter_minitest'
   gem 'database_cleaner'
   gem 'factory_bot'
+  gem 'govuk_schemas'
   gem 'govuk-content-schema-test-helpers'
   gem 'maxitest'
   # minitest 5.11.3 is incompatible with rails 5.0.6
