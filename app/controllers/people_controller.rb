@@ -11,7 +11,7 @@ class PeopleController < PublicFacingController
       end
 
       format.atom do
-        redirect_to "/government/announcements.atom?people[]=#{params[:id]}"
+        redirect_to "/search/news-and-communications.atom?people[]=#{params[:id]}"
       end
     end
   end
