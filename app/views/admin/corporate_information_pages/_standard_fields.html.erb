@@ -14,8 +14,6 @@
   <div class="summary-length-info">Summary text should be 160 characters or fewer. <span class="count"></span></div>
 
   <%= form.text_area :body, class: "previewable", rows: 20, cols: 9000, required: true %>
-
-  <%= render partial: "additional_significant_fields", locals: {form: form, edition: form.object} %>
 <% end %>
 
 <% if form.object.allows_image_attachments? %>
