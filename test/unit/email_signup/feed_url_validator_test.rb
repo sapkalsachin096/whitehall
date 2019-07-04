@@ -77,15 +77,6 @@ class EmailSignup::FeedUrlValidatorTest < ActiveSupport::TestCase
     assert_equal "Fatality notices", validator.description
   end
 
-  test 'validates and describes an organisation feed url' do
-    organisation = create(:ministerial_department, :with_published_edition)
-    feed_url  = atom_feed_maker.organisation_url(organisation)
-    validator = klass.new(feed_url)
-
-    assert validator.valid?
-    assert_equal organisation.name.upcase_first, validator.description
-  end
-
   test 'validates and describes a topic feed url' do
     topic     = create(:topic)
     feed_url  = atom_feed_maker.topic_url(topic)
