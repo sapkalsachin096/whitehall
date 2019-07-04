@@ -147,7 +147,7 @@ Whitehall::Application.routes.draw do
     resources :document_collections, only: [:show], path: 'collections'
     get '/collections' => redirect("/publications")
 
-    get '/organisations/:id(.:locale)', as: 'organisation', to: 'organisations#show', constraints: { locale: VALID_LOCALES_REGEX }
+    get '/organisations/:id(.:locale)', as: 'organisation', to: redirect('/government/organisations'), constraints: { locale: VALID_LOCALES_REGEX }
     resources :organisations, only: [:index]
 
     resources :organisations, only: [] do
