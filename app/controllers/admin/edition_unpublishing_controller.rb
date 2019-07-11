@@ -1,6 +1,7 @@
 class Admin::EditionUnpublishingController < Admin::BaseController
   before_action :load_unpublishing
   before_action :enforce_permissions!
+  before_action :make_edition_read_only
 
   def update
     services = Whitehall.edition_services
