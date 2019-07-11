@@ -39,7 +39,7 @@
       <% end %>
     <% end %>
   <% end %>
-  <% if contact.missing_translations.any? %>
+  <% if contact.missing_translations.any? && !@edition.locked? %>
     <a href="#add-translation-modal-<%= contact.id %>" class="btn btn-default" data-toggle="modal"><i class="glyphicon glyphicon-plus-sign"></i> Add translation</a>
     <%= render partial: 'admin/shared/translation_modal', locals: { id: "add-translation-modal-#{contact.id}", form_path: [:admin, contactable, contact, :translations], locales: contact.missing_translations } %>
   <% end %>
