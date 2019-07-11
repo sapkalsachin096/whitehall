@@ -576,7 +576,7 @@ class Edition < ApplicationRecord
   end
 
   def editable?
-    imported? || draft? || submitted? || rejected?
+    (imported? || draft? || submitted? || rejected?) && !locked?
   end
 
   def can_have_some_invalid_data?
