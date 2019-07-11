@@ -2,6 +2,7 @@ class Admin::EditionTagsController < Admin::BaseController
   before_action :find_edition
   before_action :enforce_permissions!
   before_action :limit_edition_access!
+  before_action :make_edition_read_only, only: %i[edit update]
 
   def edit
     @topic_taxonomy = Taxonomy::TopicTaxonomy.new
