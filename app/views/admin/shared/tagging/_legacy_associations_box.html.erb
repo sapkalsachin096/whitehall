@@ -1,6 +1,6 @@
 <section>
   <h2>Associations
-    <% if edition.pre_publication? %>
+    <% if edition.pre_publication? && !edition.locked? %>
       <%= link_to path_to_edit_associations, class: "btn btn-default pull-right" do %>
         <% if edition.has_legacy_tags? %>
           <span class="glyphicon glyphicon-edit"></span> Change Associations
