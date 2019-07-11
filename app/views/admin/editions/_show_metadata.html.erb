@@ -151,7 +151,7 @@
         <li><%= url %></li>
       <% end %>
     </ul>
-    <% if current_user.can_import? %>
+    <% if current_user.can_import? && !@edition.locked? %>
       <p><a href="#document-sources-modal" class="btn btn-default" data-toggle="modal">Edit URL redirects</a></p>
       <div id="document-sources-modal" class="modal">
         <div class="modal-dialog">
