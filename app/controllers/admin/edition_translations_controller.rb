@@ -1,5 +1,6 @@
 class Admin::EditionTranslationsController < Admin::BaseController
   include TranslationControllerConcern
+  before_action :make_edition_read_only
 
   def update
     @translated_edition.change_note = 'Added translation' unless @translated_edition.change_note.present?
