@@ -41,6 +41,13 @@ class Admin::BaseController < ApplicationController
     end
   end
 
+  def make_edition_read_only
+    if @edition.locked?
+      notice = "You cannot modify a locked #{@edition.type.titleize}"
+      redirect_to admin_edition_path(@edition), notice: notice
+    end
+  end
+
 private
 
   def forbidden!

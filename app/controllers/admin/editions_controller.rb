@@ -4,6 +4,7 @@ class Admin::EditionsController < Admin::BaseController
   before_action :clear_scheduled_publication_if_not_activated, only: %i[create update]
   before_action :find_edition, only: %i[show edit update submit revise diff reject destroy]
   before_action :prevent_modification_of_unmodifiable_edition, only: %i[edit update]
+  before_action :make_edition_read_only, only: %i[edit update create new]
   before_action :delete_absent_edition_organisations, only: %i[create update]
   before_action :build_edition, only: %i[new create]
   before_action :detect_other_active_editors, only: [:edit]
