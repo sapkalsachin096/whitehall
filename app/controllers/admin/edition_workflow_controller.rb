@@ -8,6 +8,7 @@ class Admin::EditionWorkflowController < Admin::BaseController
   before_action :set_change_note
   before_action :set_minor_change_flag
   before_action :ensure_reason_given_for_force_publishing, only: :force_publish
+  before_action :make_edition_read_only
 
   rescue_from ActiveRecord::StaleObjectError do
     redirect_to admin_edition_path(@edition), alert: "This document has been edited since you viewed it; you are now viewing the latest version"
