@@ -1,0 +1,41 @@
+<% page_title @edition.title, @edition.format_name %>
+<% page_class "edition-show" %>
+<% initialise_script "GOVUK.adminEditionShow" %>
+
+<div class="row" data-module="track-button-click" data-track-category="button-pressed" data-track-action="<%= @edition.format_name.parameterize(separator: '-') %>-button">
+  <div class="<%= @edition.imported? ? "col-md-6" : "col-md-8" %> edition-metadata">
+    <%= render partial: 'show_metadata' %>
+  </div>
+
+  <div class="<%= @edition.imported? ? "col-md-6" : "col-md-4" %> edition-sidebar">
+    <%= render partial: "history_state", locals: { edition: @edition } %>
+    <% if @edition.imported? %>
+      <%= render partial: 'speed_tagging' %>
+    <% else %>
+      <%= sidebar_tabs edition_tabs(@edition, remarks_count: @edition_remarks.length, history_count: @edition_history.total_count), class: 'remarks-history' do |tabs| %>
+        <%= tabs.pane class: "audit-trail", id: "notes" do %>
+          <h1>Notes</h1>
+          <%= render_editorial_remarks_in_sidebar(@edition_remarks, @edition) %>
+        <% end %>
+
+        <%= tabs.pane class: "audit-trail", id: "history" do %>
+          <div class="audit-trail-page">
+            <h1>Activity</h1>
+            <%= paginate @edition_history, theme: 'audit_trail' %>
+            <ul class="list-unstyled">
+              <%= render partial: "audit_trail_entry", collection: @edition_history %>
+            </ul>
+            <%= paginate @edition_history, theme: 'audit_trail' %>
+          </div>
+        <% end %>
+
+        <% if @edition.can_be_fact_checked? %>
+          <%= tabs.pane class: "fact_checking", id: "fact_checking" do %>
+            <h1>Fact checking</h1>
+            <%= render partial: 'fact_check_responses', locals: {edition: @edition}  %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
