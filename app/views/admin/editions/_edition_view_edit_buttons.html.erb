@@ -9,10 +9,12 @@
     <%= link_to "Preview on website", preview_document_url(@edition), class: 'btn btn-lg btn-primary preview_version', target: '_blank' %>
   <% end %>
 
-  <% if @edition.editable? %>
-    <%= edit_edition_button(@edition) %>
-  <% elsif @edition.is_latest_edition? and @edition.published? %>
-    <%= redraft_edition_button(@edition) %>
+  <% unless @edition.locked? %>
+    <% if @edition.editable? %>
+      <%= edit_edition_button(@edition) %>
+    <% elsif @edition.is_latest_edition? and @edition.published? %>
+      <%= redraft_edition_button(@edition) %>
+    <% end %>
   <% end %>
   <% if @edition.publicly_visible? %>
       <%= content_data_button(@edition) %>
