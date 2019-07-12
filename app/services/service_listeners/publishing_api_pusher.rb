@@ -10,6 +10,8 @@ module ServiceListeners
       # This is done synchronously before the rest of the publishing.
       # Currently (02/11/2016) publishing-api links
       # are not recalculated on parent documents when their translations are unpublished.
+      raise "Cannot send a locked document to the Publishing API" if edition.locked?
+
       handle_translations
 
       case event
