@@ -161,4 +161,15 @@ class Edition::ValidationTest < ActiveSupport::TestCase
     edition.supporting_organisations = [organisation_1]
     assert edition.valid?
   end
+
+  test 'should raise an exception when attempting to modify an edition of a locked document' do
+    edition = create(:edition)
+    edition.document.locked = true
+    edition.document.save
+
+    edition.title = 'another title'
+    e = assert_raise(RuntimeError) { edition.save }
+
+    assert_equal 'Cannot modify a locked document', e.message
+  end
 end

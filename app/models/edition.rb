@@ -42,6 +42,8 @@ class Edition < ApplicationRecord
   has_many :depended_upon_contacts, through: :edition_dependencies, source: :dependable, source_type: 'Contact'
   has_many :depended_upon_editions, through: :edition_dependencies, source: :dependable, source_type: 'Edition'
 
+  before_validation :check_if_locked_document
+
   validates_with SafeHtmlValidator
   validates_with NoFootnotesInGovspeakValidator, attribute: :body
   validates_with TaxonValidator, on: :publish
@@ -250,6 +252,10 @@ class Edition < ApplicationRecord
   def self.scheduled_for_publication_as(slug)
     document = Document.at_slug(document_type, slug)
     document && document.scheduled_edition
+  end
+
+  def check_if_locked_document
+    raise "Cannot modify a locked document" if locked?
   end
 
   def attachables
@@ -675,7 +681,7 @@ class Edition < ApplicationRecord
   end
 
   def locked?
-    document.locked
+    document&.locked
   end
 
 private
