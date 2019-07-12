@@ -208,6 +208,11 @@ class Edition < ApplicationRecord
     .distinct
   end
 
+  def self.without_locked_documents
+    joins(:document)
+    .where.not('documents.locked = true')
+  end
+
   def self.latest_edition
     where("NOT EXISTS (
       SELECT 1

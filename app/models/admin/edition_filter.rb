@@ -33,8 +33,20 @@ module Admin
 
     def each_edition_for_csv(locale = nil)
       editions_with_translations(locale).find_each do |edition|
-        yield edition if Whitehall::Authority::Enforcer.new(@current_user, edition).can?(:see)
+        if user_can_see(edition) && document_not_locked?(edition)
+          yield edition
+        end
       end
+    end
+
+    def user_can_see(edition)
+      Whitehall::Authority::Enforcer.new(@current_user, edition).can?(:see)
+    end
+
+    def document_not_locked?(edition)
+      return true if options[:include_locked_documents]
+
+      !edition.document.locked?
     end
 
     def page_title
@@ -117,6 +129,7 @@ module Admin
       editions = editions.from_date(from_date) if from_date
       editions = editions.to_date(to_date) if to_date
       editions = editions.only_broken_links if only_broken_links
+      editions = editions.without_locked_documents unless options[:include_locked_documents]
 
       editions = editions.includes(:unpublishing) if include_unpublishing?
       editions = editions.includes(:link_check_reports) if include_link_check_reports?
