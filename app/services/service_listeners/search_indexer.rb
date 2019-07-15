@@ -1,6 +1,7 @@
 module ServiceListeners
   SearchIndexer = Struct.new(:edition) do
     def index!
+      raise "Cannot index a frozen document" if edition.locked?
       if edition.can_index_in_search?
         Whitehall::SearchIndex.add(edition)
         reindex_collection_documents

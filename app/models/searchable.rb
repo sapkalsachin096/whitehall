@@ -163,6 +163,7 @@ module Searchable
   end
 
   def can_index_in_search?
-    self.class.searchable_instances.find_by(id: self.id).present? && RummagerPresenters.searchable_classes.include?(self.class)
+    self.class.searchable_instances.find_by(id: self.id).present? &&
+      RummagerPresenters.searchable_classes.include?(self.class)
   end
 end
