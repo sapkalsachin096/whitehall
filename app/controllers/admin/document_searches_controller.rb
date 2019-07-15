@@ -19,6 +19,8 @@ class Admin::DocumentSearchesController < Admin::BaseController
     def edition_scope
       Edition
         .with_translations(I18n.locale)
+        .joins(:document)
+        .where.not('documents.locked = true')
         .limit(10)
     end
 
