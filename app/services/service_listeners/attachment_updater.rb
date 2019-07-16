@@ -1,6 +1,10 @@
 module ServiceListeners
   class AttachmentUpdater
     def self.call(attachable: nil, attachment_data: nil)
+      if attachable&.document.locked?
+        raise "Cannot update attachments for locked documents"
+      end
+
       update_attachable! attachable if attachable
       update_attachment_data! attachment_data if attachment_data
     end
