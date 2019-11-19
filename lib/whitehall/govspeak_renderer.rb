@@ -6,6 +6,7 @@ module Whitehall
              :govspeak_with_attachments_to_html,
              :html_attachment_govspeak_headers_html,
              :block_attachments,
+             :bare_govspeak_to_html,
              to: :view_context
 
   private
