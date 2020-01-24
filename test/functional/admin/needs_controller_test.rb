@@ -29,7 +29,7 @@ class Admin::NeedsControllerTest < ActionController::TestCase
       %r{\A#{Plek.find('publishing-api')}/v2/links},
     ).to_return(body: { links: { meets_user_needs: [@need_1, @need_2] } }.to_json)
 
-    publishing_api_has_linkables([@need_1, @need_2], document_type: "need")
+    stub_publishing_api_has_linkables([@need_1, @need_2], document_type: "need")
   end
 
   test "associate user needs with a document" do

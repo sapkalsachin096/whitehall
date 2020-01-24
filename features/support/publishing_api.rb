@@ -59,7 +59,7 @@ Before do
       }.to_json
     )
 
-  publishing_api_has_linkables([need_1, need_2], document_type: "need")
+  stub_publishing_api_has_linkables([need_1, need_2], document_type: "need")
 end
 
 World(PolicyTaggingHelpers)

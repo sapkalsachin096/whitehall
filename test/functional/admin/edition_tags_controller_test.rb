@@ -15,7 +15,7 @@ class Admin::EditionTagsControllerTest < ActionController::TestCase
   end
 
   def stub_publishing_api_links_with_taxons(content_id, taxons)
-    publishing_api_has_links(
+    stub_publishing_api_has_links(
       "content_id" => content_id,
       "links" => {
         "taxons" => taxons,

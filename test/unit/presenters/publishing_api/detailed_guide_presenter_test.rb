@@ -102,7 +102,7 @@ class PublishingApi::DetailedGuidePresenterTest < ActiveSupport::TestCase
       "/another-mainstream-content" => "9af50189-de1c-49af-a334-6b1d87b593a6",
     }
 
-    publishing_api_has_lookups(lookup_hash)
+    stub_publishing_api_has_lookups(lookup_hash)
     create(:government)
     detailed_guide = create(
       :detailed_guide,
@@ -125,7 +125,7 @@ class PublishingApi::DetailedGuidePresenterTest < ActiveSupport::TestCase
     lookup_hash = {
       "/guidance/lorem" => "cd7fde45-5f79-4982-8939-cedc4bed161c",
     }
-    publishing_api_has_lookups(lookup_hash)
+    stub_publishing_api_has_lookups(lookup_hash)
 
     create(:government)
     detailed_guide = create(
