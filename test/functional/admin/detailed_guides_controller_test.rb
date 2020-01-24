@@ -1,7 +1,7 @@
 require "test_helper"
 
 class Admin::DetailedGuidesControllerTest < ActionController::TestCase
-  include GdsApi::TestHelpers::PublishingApiV2
+  include GdsApi::TestHelpers::PublishingApi
 
   setup do
     login_as create(:writer, organisation: create(:organisation))

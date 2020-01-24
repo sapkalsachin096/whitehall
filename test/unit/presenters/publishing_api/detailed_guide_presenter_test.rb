@@ -2,7 +2,7 @@ require "test_helper"
 require "gds_api/test_helpers/publishing_api_v2"
 
 class PublishingApi::DetailedGuidePresenterTest < ActiveSupport::TestCase
-  include GdsApi::TestHelpers::PublishingApiV2
+  include GdsApi::TestHelpers::PublishingApi
 
   def present(edition)
     PublishingApi::DetailedGuidePresenter.new(edition)

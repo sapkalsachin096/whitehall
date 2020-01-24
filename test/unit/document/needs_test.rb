@@ -1,7 +1,7 @@
 require "test_helper"
 
 class Document::NeedsTest < ActiveSupport::TestCase
-  include GdsApi::TestHelpers::PublishingApiV2
+  include GdsApi::TestHelpers::PublishingApi
 
   test "should have no associated needs when there are no need ids" do
     document = create(:document)

@@ -9,10 +9,10 @@ Before do
     "publish-intent"
   )
   stub_request(:any, %r{\A#{publishing_api_v1_endpoint}})
-  GdsApi::PublishingApiV2.any_instance.stubs(:publish)
-  GdsApi::PublishingApiV2.any_instance.stubs(:put_content)
-  GdsApi::PublishingApiV2.any_instance.stubs(:patch_links)
-  GdsApi::PublishingApiV2.any_instance.stubs(:unpublish)
+  GdsApi::PublishingApi.any_instance.stubs(:publish)
+  GdsApi::PublishingApi.any_instance.stubs(:put_content)
+  GdsApi::PublishingApi.any_instance.stubs(:patch_links)
+  GdsApi::PublishingApi.any_instance.stubs(:unpublish)
 
   need_1 = {
       "content_id" => SecureRandom.uuid,
@@ -63,4 +63,4 @@ Before do
 end
 
 World(PolicyTaggingHelpers)
-World(GdsApi::TestHelpers::PublishingApiV2)
+World(GdsApi::TestHelpers::PublishingApi)

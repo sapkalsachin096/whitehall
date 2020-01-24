@@ -1,7 +1,7 @@
 require "test_helper"
 
 class DocumentTest < ActiveSupport::TestCase
-  include GdsApi::TestHelpers::PublishingApiV2
+  include GdsApi::TestHelpers::PublishingApi
 
   test "should return documents that have published editions" do
     create(:superseded_publication)
