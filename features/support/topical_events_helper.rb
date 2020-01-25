@@ -1,7 +1,7 @@
 ParameterType(
   name: "topical_event_section",
   regexp: /the (announcements|publications|consultations) section/,
-  transformer: ->(section) { "wtf is up with this" },
+  transformer: ->(section) { section },
 )
 module TopicalEventsHelper
   def create_topical_event_and_stub_in_content_store(options = {})
