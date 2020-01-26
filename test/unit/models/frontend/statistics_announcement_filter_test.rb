@@ -49,7 +49,7 @@ class Frontend::StatisticsAnnouncementsFilterTest < ActiveSupport::TestCase
     topics = build_class_instance(topics: [topic_1["content_id"], topic_2["content_id"]]).topics
 
     assert_equal([true, true], (topics.map { |topic| topic.is_a?(Taxonomy::Taxon) }))
-    assert_equal topics.map(&:name), [topic_1["title"], topic_2["title"]]
+    assert_equal topics.map(&:name).sort, [topic_1["title"], topic_2["title"]].sort
   end
 
   test "topic_ids returns topic ids" do
