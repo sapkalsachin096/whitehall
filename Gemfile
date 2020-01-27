@@ -55,7 +55,7 @@ gem "shared_mustache", "~> 1.0.0"
 gem "sidekiq-scheduler", "~> 3.0"
 gem "slimmer", "~> 13.2"
 gem "sprockets", "~> 3.7"
-gem "sprockets-rails"
+gem "sprockets-rails", "~> 3.2.1"
 gem "transitions", require: ["transitions", "active_record/transitions"]
 gem "uglifier", "~> 4.2"
 gem "validates_email_format_of"
@@ -80,13 +80,13 @@ end
 
 
 group :development, :test do
-  gem "parallel_tests"
+  gem "parallel_tests", "~> 2.30.1"
   gem "pry-byebug"
   gem "pry-rails"
   gem "rubocop-govuk", "~> 2"
   gem "ruby-prof"
   gem "teaspoon-qunit"
-  gem "test-queue", "~> 0.2.13"
+  gem "test-queue", "~> 0.4.2"
   # teaspoon has coffee assets that mean we need coffee script in order
   # to be able to run things
   gem "coffee-rails", "~> 4.2.2"
@@ -107,9 +107,7 @@ group :test do
   gem "factory_bot"
   gem "govuk-content-schema-test-helpers"
   gem "maxitest"
-  # minitest 5.11.3 is incompatible with rails 5.0.6
-  # this is a temporary downgrade until rails is upgraded
-  gem "minitest", "5.13.0"
+  gem "minitest", "5.13"
   gem "minitest-fail-fast"
   gem "minitest-stub-const"
   gem "mocha"
